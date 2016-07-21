@@ -24,11 +24,10 @@ class screen():
 			for j in xrange(0, 21):
 				self.pos[i,j]=tile(1,True)
 		self.initRouteMap()
-		self.cost[7,9]=0
-		self.calculateCosts(7,9)
-		self.route[7,9]=None
-		for i in xrange (0, 15):
-				print '{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}'.format(self.cost[i,0],self.cost[i,1],self.cost[i,2],self.cost[i,3],self.cost[i,4],self.cost[i,5],self.cost[i,6],self.cost[i,7],self.cost[i,8],self.cost[i,9],self.cost[i,10],self.cost[i,11],self.cost[i,12],self.cost[i,13],self.cost[i,14],self.cost[i,i],self.cost[i,16],self.cost[i,17],self.cost[i,18])
+		self.cost[7,10]=0
+		self.calculateCosts(7,10)
+		self.route[7,10]=None
+
 
 	#inicia la matriz de rutas con un costo de 1000 en cada cuadro
 	def initRouteMap(self):
@@ -50,17 +49,22 @@ class screen():
 					self.route[i,j+k] = (i,j)
 					self.calculateCosts(i,j+k)
 
-	def getRoute(self,posy,posx):
-		route = []
 
-		while (self.route[posx,posy] != None):
-			print 'start'
-			print self.route[posx,posy]
-			posx = self.route[posx,posy][0]
-			posy = self.route[posx,posy][1]
-			route.append((posx,posy))
-			print(posx,posy)
+	def getRoute(self,posy,posx,pposy,pposx):
+		route = []
+		posx += 1
+		posy += 1
+		print "move to:{} player coords: {}".format((posx,posy),(pposx,pposy))
+		if self.route[posx,posy] != None:
+			route.append((posy - 10 + pposy, 7 - posx + pposx))
+			while (self.route[posx,posy] != (7,10)):
+				auxPosx = self.route[posx,posy][0]
+				auxPosy = self.route[posx,posy][1]
+				posx=auxPosx
+				posy=auxPosy
+				route.append((posy - 10 +pposy,7 - posx + pposx))
 		print route
+		return route
 
 
 	def move(self, dir):
