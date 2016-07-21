@@ -13,6 +13,7 @@ ancho = 608
 alto = 416
 
 map=[]
+routeMap=[]
 
 def dibujar(ventana,player,screen):
 	for i in xrange (0,15):
@@ -22,6 +23,13 @@ def dibujar(ventana,player,screen):
 			ventana.blit(screen.pos[i,j].background, (posJ-32+screen.displacementX, posI-32+screen.displacementY))
 	ventana.blit(player.ImagePlayer, (posX,posY))
 	pygame.display.update()
+
+def getRoute(coordx, coordy):
+	#retorna una lista con el camino minimo desde la posicion del jugador hasta la coordenada x,y recibidas como parametro
+	route = []
+	explore(player.posx, player.posy)
+
+	return route
 
 
 pygame.init()
@@ -66,6 +74,10 @@ while True:
 				flagUp = False
 			elif evento.key == K_DOWN:
 				flagDown = False
+		elif evento.type == pygame.MOUSEBUTTONDOWN:
+			if pygame.mouse.get_pressed()[0]==1: #click izquierdo
+				#print(pygame.mouse.get_pos()[0]/32 - 9 + player.posx, -pygame.mouse.get_pos()[1]/32 + 7+ player.posy) #coordenadas de el click
+				ruta=screen.getRoute(pygame.mouse.get_pos()[0]/32, pygame.mouse.get_pos()[1]/32)
 
 	if flagLeft:
 		if player.status == "waiting":
