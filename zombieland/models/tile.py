@@ -1,16 +1,11 @@
-import pygame, sys
-import time 
-import threading
-from pygame.locals import *
-from random import randint
 from player import *
 
+#Clase para los cuadros del piso
 class tile(pygame.sprite.Sprite):
-	"""clase para zombies"""
-	background=""
-	objects=[]
-	player=None
-	walkable=True
+	background="" #recurso para el piso
+	objects=[] #objetos contenidos en el cuadro
+	player=None #id del player ubicado en el cuadro
+	walkable=True #si es caminable o no el cuadro
 
 	def __init__(self,ground, walkable):
 		pygame.sprite.Sprite.__init__(self)
