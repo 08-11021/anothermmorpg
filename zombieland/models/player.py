@@ -29,15 +29,7 @@ class player(pygame.sprite.Sprite):
 		self.ImagePlayer = pygame.image.load("../outfits/"+self.outfit+"/"+dir+"/3.png")
 		time.sleep(1.0/3.0)
 		self.ImagePlayer = pygame.image.load("../outfits/"+self.outfit+"/"+dir+"/2.png")
-		if dir == "down":
-			self.posy -= 1
-		elif dir == "up":
-			self.posy += 1
-		elif dir == "left":
-			self.posx -= 1
-		elif dir == "right":
-			self.posx += 1 
-		self.status="waiting"
+
 		print(self.posx,self.posy)
 
 	#Metodo para cambiar outfit del jugador

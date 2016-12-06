@@ -9,9 +9,11 @@ class tile(pygame.sprite.Sprite):
 
 	def __init__(self,ground, walkable):
 		pygame.sprite.Sprite.__init__(self)
-		self.background = pygame.image.load("../tiles/"+str(ground)+".png")
+		self.background = pygame.image.load("../tiles/"+ground+".png")
 		self.walkable = walkable
 
+	def isWalkable(self):
+		return self.walkable
 
 	def addObject(self, object):
 		self.objects.append(object)
